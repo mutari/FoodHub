@@ -1,0 +1,15 @@
+head
+    include includes/head.pug
+body
+    include includes/header.pug
+
+    main 
+        #addFood
+            form(action="/create/food", method="post")
+                input(type="text", name="name", placeholder="name")
+                input(type="text", name="about", placeholder="about")
+                input(type="text", name="source", placeholder="source")
+                input(type="text", name="image", placeholder="image")
+                input(type="submit", value="add")
+
+    include includes/footer.pug

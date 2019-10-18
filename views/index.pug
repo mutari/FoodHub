@@ -1,0 +1,15 @@
+head
+    include includes/head.pug
+body
+    include includes/header.pug
+
+    main 
+        #foods
+            ul
+                each item in items
+                    li
+                        .card
+                            img(src=`${item.image}`, alt=`'${item.name}' image`)
+                            h3=item.name
+
+    include includes/footer.pug
