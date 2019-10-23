@@ -5,11 +5,72 @@ body
 
     main 
         #addFood
-            form(action="/create/food", method="post")
+            form(action="/create/food", method="post", id="foodForm")
                 input(type="text", name="name", placeholder="name")
-                input(type="text", name="about", placeholder="about")
-                input(type="text", name="source", placeholder="source")
-                input(type="text", name="image", placeholder="image")
-                input(type="submit", value="add")
+                #info
+                    #itemDiv
+                        h3 Add an ingridiens
+                        #items
+                            .ing
+                                input(type="text", name="ingridient", placeholder="ingridiens")
+                                input(type="button", value="add", onclick="addIng()")
+                    #howTo
+                        textarea(name="discription", placeholder="write a discription max 200 carakters", maxlength="300")
+                        h3 instruktioner
+                        #HTitems
+                            .ht
+                                input(type="text", name="howto", placeholder="how to?")
+                                input(type="button", value="add", onclick="addHT()")
+                input(type="submit", value="create")
+
 
     include includes/footer.pug
+
+
+    script.
+        let antalIng = 0;
+        let antalHT = 0;
+
+        function addHT() {
+            var form = document.getElementById('HTitems');
+            var ing = document.getElementsByClassName('ht');
+            var newing = document.createElement('div');
+            newing.setAttribute('class', 'ht');
+            newing.innerHTML = ing[antalHT].innerHTML;
+            ing[antalHT].childNodes[1].setAttribute('onclick', `delHT(${antalHT})`);
+            ing[antalHT].childNodes[1].setAttribute('value', `remove`);
+            form.appendChild(newing);
+            antalHT++;
+
+        }
+
+        function delHT(id) {
+            var form = document.getElementById('HTitems');
+            form.childNodes[id].remove();
+            antalHT--;
+            for(let i = 0; i < form.childNodes.length-1; i++) {
+                form.childNodes[i].childNodes[1].setAttribute('onclick', `delHT(${i})`);
+            }
+        }
+
+        function addIng() {
+            var form = document.getElementById('items');
+            var ing = document.getElementsByClassName('ing');
+            var newing = document.createElement('div');
+            newing.setAttribute('class', 'ing');
+            newing.innerHTML = ing[antalIng].innerHTML;
+            ing[antalIng].childNodes[1].setAttribute('onclick', `delIng(${antalIng})`);
+            ing[antalIng].childNodes[1].setAttribute('value', `remove`);
+            form.appendChild(newing);
+            antalIng++;
+
+        }
+
+        function delIng(id) {
+            var form = document.getElementById('items');
+            form.childNodes[id].remove();
+            antalIng--;
+            for(let i = 0; i < form.childNodes.length-1; i++) {
+                form.childNodes[i].childNodes[1].setAttribute('onclick', `delIng(${i})`);
+            }
+        }

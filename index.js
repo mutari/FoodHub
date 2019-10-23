@@ -22,19 +22,12 @@ const port = 80;
     await foodCol.insertOne({
         name: "Korv Stroganoff", 
         about: "Korv Stroganoff på falukorv är en klassiker i det svenska vardagsköket - smakar lika bra i matlådan dagen efter. Här är ett recept från Vår kokbok.", 
-        source: "https://www.koket.se/sara_begner/soppor_och_grytor/korv_och_chark/korv_stroganoff/", 
+        howTo: "https://www.koket.se/sara_begner/soppor_och_grytor/korv_och_chark/korv_stroganoff/", 
         image: "https://source.unsplash.com/298x223/?food"
     });
 
-    await foodCol.insertOne({
-        name: "Lax i ugn med Philadelphiatäcke", 
-        about: "Det här receptet är löjligt enkelt och gott! Duka upp en liten buffé med olika toppings så får var och en välja vad den vill ha.", 
-        source: "https://www.koket.se/lax-i-ugn-med-philadelphiatacke", 
-        image: "https://source.unsplash.com/298x223/?food"
-    });
-
-    console.log(await foodCol.find().toArray());
-    */
+    console.log(await foodCol.find().toArray());*/
+    
 
     let app = express();
 

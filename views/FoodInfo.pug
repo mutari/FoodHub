@@ -1,0 +1,30 @@
+head
+    include includes/head.pug
+body
+    include includes/header.pug
+
+    main 
+        #FoodInfo
+            h1=name
+            #info
+                #itemDiv
+                    img(src=`${image}`, alt=`'${name}' image`)
+                    .block
+                    h3 ingridiens
+                    #items
+                        each item in ingridient
+                            .ing
+                                p=item
+                #howTo
+                    h3 beskrivning
+                    p.textarea=discription
+                    .block
+                    h3 instruktioner
+                    #HTitems
+                        each item, index in howto
+                            .ht
+                                p.index=index
+                                p.instr=item
+
+
+    include includes/footer.pug

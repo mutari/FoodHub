@@ -3,10 +3,22 @@
   margin: 0;
 }
 
+.hide {
+  display: none;
+}
+
+.block {
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 50px;
+}
+
 body header {
   display: flex;
   justify-content: center;
   background-color: white;
+  margin-bottom: 20px;
 }
 body header #head {
   width: 100%;
@@ -14,9 +26,8 @@ body header #head {
   padding: 10px;
   text-align: center;
 }
-body header #head h1 {
-  width: 100%;
-  margin-bottom: 10px;
+body header #head img {
+  margin-bottom: 20px;
 }
 body header #head nav {
   position: sticky;
@@ -40,9 +51,16 @@ body header #head nav ul li a {
 body header #head nav ul li :hover {
   background-color: #ececec;
 }
+body footer {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
 body main {
-  height: 80vh;
   margin: 0 30px 0 30px;
+  padding-bottom: 20px;
   background-color: whitesmoke;
   border-radius: 15px;
   display: flex;
@@ -50,40 +68,252 @@ body main {
 }
 body main #foods {
   padding: 30px;
+  display: block;
 }
 body main #foods ul {
   list-style-type: none;
+  display: inline-block;
+  margin: auto;
+  column-count: 3;
+}
+body main #foods ul li {
+  display: inline-block;
 }
 body main #foods ul li .card {
+  position: relative;
   background-color: white;
-  border-radius: 5px;
   margin: 5px;
   width: 293px;
+  height: 325px;
   border-left: solid #ff7b00;
-  border: solid black;
+  margin-bottom: 4px;
 }
 body main #foods ul li .card h3 {
+  padding: 0 3px 0 3px;
   text-align: center;
+  max-height: 22;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 body main #foods ul li .card img {
   width: 100%;
 }
+body main #foods ul li .card p {
+  padding: 0 3px 0 3px;
+  max-height: 56px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+body main #foods ul li .card .tools {
+  position: absolute;
+  bottom: 0;
+}
+body main #foods ul li .card .tools a {
+  padding: 4px;
+  color: black;
+}
+body main #foods ul li .card .tools a .delete:hover {
+  color: red;
+}
+body main #foods ul li .card .tools a .create:hover {
+  color: green;
+}
+body main #foods ul li .card .tools a .save:hover {
+  color: blue;
+}
+body main #foods ul li .card:hover {
+  transform: scale(1.05);
+  z-index: 1000;
+  box-shadow: 0px 0px 10px 4px gray;
+}
 body main #addFood {
-  margin-top: 15vh;
-  width: 600px;
+  width: 100%;
 }
 body main #addFood form {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
-body main #addFood form input {
+body main #addFood form input, body main #addFood form textarea {
   height: 45px;
   font-size: 30px;
   text-align: center;
   margin: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  outline: none;
+  border: none;
+  border-bottom: solid 1px;
 }
-body main #addFood form input[type=submit] {
-  width: 75px;
+body main #addFood form input[name=name] {
+  flex: 2;
+  width: 90%;
+}
+body main #addFood form #info {
+  width: 90%;
+  display: flex;
+}
+body main #addFood form #info #itemDiv {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+body main #addFood form #info #itemDiv h3 {
+  color: gray;
+  text-align: center;
+}
+body main #addFood form #info #itemDiv #items {
+  flex: 1;
+  border-right: solid 1px;
+  margin-right: 10px;
+  padding-right: 10px;
+}
+body main #addFood form #info #itemDiv #items .ing {
+  width: 100%;
+  display: flex;
+}
+body main #addFood form #info #itemDiv #items .ing input {
+  font-size: 15px;
+}
+body main #addFood form #info #itemDiv #items .ing input[type=text] {
+  flex: 4;
+}
+body main #addFood form #info #itemDiv #items .ing input[type=button] {
+  flex: 1;
+}
+body main #addFood form #info #howTo {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+body main #addFood form #info #howTo textarea {
+  padding: 10px;
+  border-top: solid 1px;
+  font-size: 15px;
+  width: 95%;
+  height: 75px;
+  resize: none;
+}
+body main #addFood form #info #howTo h3 {
+  color: gray;
+  text-align: center;
+}
+body main #addFood form #info #howTo #HTitems {
+  width: 96%;
+}
+body main #addFood form #info #howTo #HTitems .ht {
+  width: 100%;
+  display: flex;
+}
+body main #addFood form #info #howTo #HTitems .ht input {
+  font-size: 15px;
+}
+body main #addFood form #info #howTo #HTitems .ht input[type=text] {
+  flex: 4;
+}
+body main #addFood form #info #howTo #HTitems .ht input[type=button] {
+  flex: 1;
+}
+body main #FoodInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  padding: 20px 0 20px 0;
+}
+body main #FoodInfo h1 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+body main #FoodInfo p {
+  text-align: center;
+  margin: 5px;
+  outline: none;
+  border-left: solid 1px #ff7b00;
+  width: 100%;
+  font-size: 25px;
+  min-height: 30px;
+  padding: 3px;
+}
+body main #FoodInfo #info {
+  width: 90%;
+  display: flex;
+}
+body main #FoodInfo #info #itemDiv {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: solid 1px;
+}
+body main #FoodInfo #info #itemDiv img {
+  margin: 10px;
+}
+body main #FoodInfo #info #itemDiv .block {
+  height: 20px;
+}
+body main #FoodInfo #info #itemDiv h3 {
+  color: gray;
+  text-align: center;
+}
+body main #FoodInfo #info #itemDiv #items {
+  flex: 1;
+  margin-right: 10px;
+  padding-right: 10px;
+}
+body main #FoodInfo #info #itemDiv #items .ing {
+  width: 100%;
+  display: flex;
+}
+body main #FoodInfo #info #itemDiv #items .ing p {
+  text-align: left;
+}
+body main #FoodInfo #info #howTo {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 25px;
+}
+body main #FoodInfo #info #howTo .textarea {
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-top: solid 1px #ff7b00;
+  border-bottom: solid 1px #ff7b00;
+  width: 95%;
+  margin: 20px;
+  font-size: 20px;
+}
+body main #FoodInfo #info #howTo .block {
+  height: 100px;
+}
+body main #FoodInfo #info #howTo h3 {
+  color: gray;
+  text-align: center;
+}
+body main #FoodInfo #info #howTo #HTitems {
+  width: 96%;
+}
+body main #FoodInfo #info #howTo #HTitems .ht {
+  width: 100%;
+  display: flex;
+}
+body main #FoodInfo #info #howTo #HTitems .ht .instr {
+  text-align: left;
+  padding-left: 10px;
+}
+body main #FoodInfo #info #howTo #HTitems .ht .index {
+  width: 30px;
+  color: #ff7b00;
+  border: none;
 }
 
 /*# sourceMappingURL=style.css.map */

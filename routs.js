@@ -1,14 +1,18 @@
-const objectID = require('mongodb').ObjectID;
+const ObjectID = require('mongodb').ObjectID;
 
 module.exports = (app) => {
 
     app.get('/', async (req, res) => {
 
         const mat = await app.dbFood.find().toArray();
-        console.log(mat);
 
         res.render('index', {items: mat});
 
+    });
+
+    app.get('/:id', async (req, res) => {
+        let obj = await app.dbFood.findOne({"_id": ObjectID(req.params.id)});
+        res.render('FoodInfo', obj);
     });
 
     app.get('/create/food', (req, res) => {
@@ -16,9 +20,15 @@ module.exports = (app) => {
     });
 
     app.post('/create/food', async (req, res) => {
+        req.body.image = "https://source.unsplash.com/298x223/?food";
         await app.dbFood.insertOne(req.body);
         res.redirect('/');
     });
+
+    app.get('/delete/food/:id', async (req, res) => {
+        await app.dbFood.remove({"_id": ObjectID(req.params.id)});
+        res.redirect('/');
+    })
 
 }
 
