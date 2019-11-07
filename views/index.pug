@@ -8,8 +8,8 @@ body
             ul
                 each item in items
                     li
-                        .card(onclick=`location.href = '/${item._id}';`)
-                            img(src=`${item.image}`, alt=`'${item.name}' image`)
+                        .card
+                            img(src=`${item.image}`, alt=`'${item.name}' image`, onclick=`location.href = '/${item._id}';`)
                             h3=item.name
                             p=item.discription
                             .tools
@@ -17,8 +17,17 @@ body
                                     i(class="tiny material-icons delete") delete
                                 a(href=`/rewrite/food/${item._id}`)
                                     i(class="tiny material-icons create") create
-                                a(href=`/save/food/${item._id}`)
+                                a(onclick='save("' + item._id + '")')
                                     i(class="tiny material-icons save") save
+        
+        script.
+
+            function save(id) {
+                console.log(id);/*
+                let data = JSON.parse(window.localStorage.getItem('save'));
+                data.arr.push(id);
+                window.localStorage.setItem('save', JSON.stringify(data));*/
+            }
 
 
     include includes/footer.pug

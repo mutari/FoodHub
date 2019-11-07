@@ -28,7 +28,24 @@ module.exports = (app) => {
     app.get('/delete/food/:id', async (req, res) => {
         await app.dbFood.remove({"_id": ObjectID(req.params.id)});
         res.redirect('/');
-    })
+    });
+
+    app.get('/rewrite/food/:id', async (req, res) => {
+        let data = await app.dbFood.findOne({"_id": ObjectID(req.params.id)});
+        console.log(data);
+        res.render('rewriteFood', data);
+    });
+
+    app.post('/rewrite/food/:id', async (req, res) => {
+
+        await app.dbFood.updateOne({"_id": ObjectID(req.params.id)}, {$set: req.body});
+        res.redirect('/');
+
+    });
+
+    app.get('/saved/food', (req, res) => {
+        res.render('index')
+    });
 
 }
 

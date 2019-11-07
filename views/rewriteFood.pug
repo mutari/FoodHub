@@ -5,31 +5,39 @@ body
 
     main 
         #addFood
-            form(action="/create/food", method="post", id="foodForm")
-                input(type="text", name="name", placeholder="name")
+            form(action=`/rewrite/food/${_id}`, method="post", id="foodForm")
+                input(type="text", name="name", placeholder="name", value=`${name}`)
                 #info
                     #itemDiv
                         h3 Add an ingridiens
                         #items
-                            .ing
-                                input(type="text", name="ingridient", placeholder="ingridiens")
-                                input(type="button", value="add", onclick="addIng()")
+                            each item, index in ingridient
+                                .ing
+                                    input(type="text", name="ingridient", placeholder="ingridiens", value=`${item}`)
+                                    if index < ingridient.length-1
+                                        input(type="button", value="remove", onclick=`delIng(${index})`)
+                                    else
+                                        input(type="button", value="add", onclick=`addIng()`)
                     #howTo
-                        textarea(name="discription", placeholder="write a discription max 300 carakters", maxlength="300")
+                        textarea(name="discription", placeholder="write a discription max 300 carakters", maxlength="300")=discription
                         h3 instruktioner
                         #HTitems
-                            .ht
-                                input(type="text", name="howto", placeholder="how to?")
-                                input(type="button", value="add", onclick="addHT()")
-                input(type="submit", value="create")
+                            each item, index in howto
+                                .ht
+                                    input(type="text", name="howto", placeholder="how to?", value=`${item}`)
+                                    if index < howto.length-1
+                                        input(type="button", value="remove", onclick=`delHT(${index})`)
+                                    else
+                                        input(type="button", value="add", onclick="addHT()")
+                input(type="submit", value="update")
 
 
     include includes/footer.pug
 
 
     script.
-        let antalIng = 0;
-        let antalHT = 0;
+        let antalIng = document.getElementById('items').childNodes.length-1;
+        let antalHT = document.getElementById('HTitems').childNodes.length-1;
 
         function addHT() {
             var form = document.getElementById('HTitems');
@@ -37,6 +45,7 @@ body
             var newing = document.createElement('div');
             newing.setAttribute('class', 'ht');
             newing.innerHTML = ing[antalHT].innerHTML;
+            newing.childNodes[0].setAttribute('value', '');
             ing[antalHT].childNodes[1].setAttribute('onclick', `delHT(${antalHT})`);
             ing[antalHT].childNodes[1].setAttribute('value', `remove`);
             form.appendChild(newing);
@@ -59,6 +68,7 @@ body
             var newing = document.createElement('div');
             newing.setAttribute('class', 'ing');
             newing.innerHTML = ing[antalIng].innerHTML;
+            newing.childNodes[0].setAttribute('value', '');
             ing[antalIng].childNodes[1].setAttribute('onclick', `delIng(${antalIng})`);
             ing[antalIng].childNodes[1].setAttribute('value', `remove`);
             form.appendChild(newing);
