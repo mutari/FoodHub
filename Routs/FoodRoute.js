@@ -1,4 +1,5 @@
 const ObjectID = require('mongodb').ObjectID;
+const auth = require('./modules/auth');
 
 module.exports = (app) => {
 
@@ -10,17 +11,18 @@ module.exports = (app) => {
 
     });
 
-    app.get('/:id', async (req, res) => {
+    app.get('/get/:id', async (req, res) => {
         let obj = await app.dbFood.findOne({"_id": ObjectID(req.params.id)});
         res.render('FoodInfo', obj);
     });
 
-    app.get('/create/food', (req, res) => {
+    app.get('/create/food', auth, (req, res) => {
         res.render('addFood');
     });
 
-    app.post('/create/food', async (req, res) => {
+    app.post('/create/food', auth, async (req, res) => {
         req.body.image = "https://source.unsplash.com/298x223/?food";
+        req.body.user = req.token;
         await app.dbFood.insertOne(req.body);
         res.redirect('/');
     });

@@ -2,6 +2,7 @@ require('dotenv').config();
 const mongodb = require('mongodb').MongoClient;
 const conString = process.env.CONSTRING;
 const express = require('express');
+const coockieParser = require("cookie-parser");
 
 const port = 80;
 
@@ -11,22 +12,10 @@ const port = 80;
     const con = await mongodb.connect(conString, {useNewUrlParser: true, useUnifiedTopology: true});
     //create a new db in mongodb atlas
     const db = await con.db("menu")
-    //create a new collection
+    //connect to the collections
     const foodCol = await db.collection("food");
     const weekCol = await db.collection("week");
-
-    /*
-    //test pupulate
-    await foodCol.deleteMany();
-
-    await foodCol.insertOne({
-        name: "Korv Stroganoff", 
-        about: "Korv Stroganoff på falukorv är en klassiker i det svenska vardagsköket - smakar lika bra i matlådan dagen efter. Här är ett recept från Vår kokbok.", 
-        howTo: "https://www.koket.se/sara_begner/soppor_och_grytor/korv_och_chark/korv_stroganoff/", 
-        image: "https://source.unsplash.com/298x223/?food"
-    });
-
-    console.log(await foodCol.find().toArray());*/
+    const userCol = await db.collection("user");
     
 
     let app = express();
@@ -34,6 +23,7 @@ const port = 80;
     app.set('view engine', 'pug');
     app.use(express.urlencoded({extended: false}));
     app.use(express.static(__dirname + '/public'));
+    app.use(coockieParser());
     app.listen(port, (err) => {
         if(err) console.log(err)
         else console.log(`Server started and listening on port: ${port}`);
@@ -41,8 +31,11 @@ const port = 80;
 
     app.dbFood = foodCol;
     app.dbWeek = weekCol;
+    app.dbUser = userCol;
 
-    require('./routs.js')(app);
+    require('./Routs/FoodRoute')(app);
+    require('./Routs/MenyRoute')(app);
+    require('./Routs/LoginRoute')(app);
 
 })();
 

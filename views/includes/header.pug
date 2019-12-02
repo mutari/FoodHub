@@ -1,15 +1,19 @@
 header
     #head
-        a(href="/")
-            img(src="/FoodHub.png", alt="", srcset="", width="100px")
+        #top
+            #mainpath
+                a(href="/")
+                    img(src="/FoodHub.png", alt="", srcset="", width="100px")
+            #profile
+                a(href="/login" id="loginb") login
         nav
             ul
                 li 
                     a(href="/create/food") Add Food
                 li
-                    a(href="/week/meny") Week Meny
+                    a(href="/week/meny") Week Menys
                 li 
-                    a(onclick="loadSave()") Saved
+                    a(href="/profile") profile
 
     script.
         function loadSave() {

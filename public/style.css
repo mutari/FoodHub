@@ -14,6 +14,66 @@
   height: 50px;
 }
 
+.card {
+  position: relative;
+  background-color: white;
+  margin: 5px;
+  width: 293px;
+  height: 325px;
+  border-left: solid #ff7b00;
+  margin-bottom: 4px;
+}
+.card h3 {
+  padding: 0 3px 0 3px;
+  text-align: center;
+  max-height: 22;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card img {
+  width: 100%;
+}
+.card p {
+  padding: 0 3px 0 3px;
+  max-height: 56px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.card .tools {
+  position: absolute;
+  bottom: 0;
+}
+.card .tools a {
+  padding: 4px;
+  color: black;
+}
+.card .tools a .delete:hover {
+  color: red;
+}
+.card .tools a .create:hover {
+  color: green;
+}
+.card .tools a .save:hover {
+  color: blue;
+}
+.card .user {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.card .user a {
+  color: black;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  z-index: 1000;
+  box-shadow: 0px 0px 10px 4px gray;
+}
+
 body header {
   display: flex;
   justify-content: center;
@@ -26,8 +86,29 @@ body header #head {
   padding: 10px;
   text-align: center;
 }
-body header #head img {
+body header #head #top {
+  margin-top: 5px;
+  display: grid;
+  grid-template-columns: 10px 40px 1fr 40px 10px;
+  grid-template-areas: ". . img profile .";
+}
+body header #head #top #mainpath {
+  grid-area: img;
+}
+body header #head #top #mainpath img {
   margin-bottom: 20px;
+}
+body header #head #top #profile {
+  grid-area: profile;
+}
+body header #head #top #profile #loginb {
+  text-decoration: none;
+  border-right: solid #ff7b00;
+  color: black;
+  padding: 6px;
+}
+body header #head #top #profile :hover {
+  background-color: #ececec;
 }
 body header #head nav {
   position: sticky;
@@ -78,56 +159,6 @@ body main #foods ul {
 }
 body main #foods ul li {
   display: inline-block;
-}
-body main #foods ul li .card {
-  position: relative;
-  background-color: white;
-  margin: 5px;
-  width: 293px;
-  height: 325px;
-  border-left: solid #ff7b00;
-  margin-bottom: 4px;
-}
-body main #foods ul li .card h3 {
-  padding: 0 3px 0 3px;
-  text-align: center;
-  max-height: 22;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-body main #foods ul li .card img {
-  width: 100%;
-}
-body main #foods ul li .card p {
-  padding: 0 3px 0 3px;
-  max-height: 56px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-body main #foods ul li .card .tools {
-  position: absolute;
-  bottom: 0;
-}
-body main #foods ul li .card .tools a {
-  padding: 4px;
-  color: black;
-}
-body main #foods ul li .card .tools a .delete:hover {
-  color: red;
-}
-body main #foods ul li .card .tools a .create:hover {
-  color: green;
-}
-body main #foods ul li .card .tools a .save:hover {
-  color: blue;
-}
-body main #foods ul li .card:hover {
-  transform: scale(1.05);
-  z-index: 1000;
-  box-shadow: 0px 0px 10px 4px gray;
 }
 body main #addFood {
   width: 100%;
@@ -314,6 +345,93 @@ body main #FoodInfo #info #howTo #HTitems .ht .index {
   width: 30px;
   color: #ff7b00;
   border: none;
+}
+body main #login {
+  border-left: solid #ff7b00;
+  margin: 35px;
+}
+body main #login form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+body main #login form input {
+  margin: 1px;
+  padding: 4px;
+  height: 30px;
+  width: 200px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  border-bottom: solid 1px black;
+  outline: none;
+}
+body main #login form #button {
+  display: flex;
+  justify-content: center;
+}
+body main #login form #button input {
+  width: 80px;
+}
+body main #login form a {
+  float: right;
+  margin-top: 10px;
+}
+body main #profile {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+}
+body main #profile #profileHeader {
+  width: 100%;
+}
+body main #profile #profileHeader h1 {
+  grid-area: name;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+body main #profile #profileInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+body main #profile #profileInfo #profileSide {
+  flex: 1;
+  border-right: solid #ff7b00;
+  padding-left: 20px;
+  padding-top: 30px;
+}
+body main #profile #profileInfo #profileSide h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+body main #profile #profileInfo #profileSide ul li {
+  list-style-type: none;
+  border-left: solid #ff7b00;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+body main #profile #profileInfo #profileSide ul li .info {
+  color: gray;
+  margin-left: 10px;
+}
+body main #profile #profileInfo #profileMain {
+  flex: 3;
+}
+body main #profile #profileInfo #profileMain #foodCreated {
+  padding: 30px;
+  display: block;
+}
+body main #profile #profileInfo #profileMain #foodCreated ul {
+  list-style-type: none;
+  display: inline-block;
+  margin: auto;
+  column-count: 2;
+}
+body main #profile #profileInfo #profileMain #foodCreated ul li {
+  display: inline-block;
 }
 
 /*# sourceMappingURL=style.css.map */

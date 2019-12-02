@@ -9,7 +9,7 @@ body
                 each item in items
                     li
                         .card
-                            img(src=`${item.image}`, alt=`'${item.name}' image`, onclick=`location.href = '/${item._id}';`)
+                            img(src=`${item.image}`, alt=`'${item.name}' image`, onclick=`location.href = '/get/${item._id}';`)
                             h3=item.name
                             p=item.discription
                             .tools
@@ -19,6 +19,8 @@ body
                                     i(class="tiny material-icons create") create
                                 a(onclick='save("' + item._id + '")')
                                     i(class="tiny material-icons save") save
+                            .user
+                                a(href=`/profile/${(item.user ? item.user.id : '0')}`)='by: ' + (item.user ? item.user.username : 'admin') 
         
         script.
 

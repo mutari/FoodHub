@@ -13,6 +13,82 @@
     height: 50px;
 }
 
+//food cards
+.card {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    margin: 5px;
+
+    width: 293px;
+    height: 325px;
+
+    border-left: solid rgb(255, 123, 0);
+    margin-bottom: 4px;
+
+    h3 {
+        padding: 0 3px 0 3px;
+        text-align: center;
+        max-height: 22;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    p {
+        padding: 0 3px 0 3px;
+        max-height: 56px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;  
+    }
+
+    .tools {
+        position: absolute;
+        bottom: 0;
+
+        a {
+            padding: 4px;
+            color: black;
+
+            .delete:hover {
+                color: red;
+            }
+
+            .create:hover {
+                color: green;
+            }
+
+            .save:hover {
+                color: blue;
+            }
+
+        }
+
+    }
+
+    .user {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        a {
+            color: black;
+        }
+    }
+
+}
+
+.card:hover {
+    transform: scale(1.05);
+    z-index: 1000;
+    box-shadow: 0px 0px 10px 4px gray;
+}
+
 body {
 
     //header.pug
@@ -28,9 +104,34 @@ body {
             padding: 10px;
             text-align: center;
             
-            img {
-                margin-bottom: 20px;
+            #top {
+                margin-top: 5px;
+                display: grid;
+                grid-template-columns: 10px 40px 1fr 40px 10px;
+                grid-template-areas: ". . img profile .";
 
+                #mainpath {
+                    grid-area: img;
+                    img {
+                        margin-bottom: 20px;
+                    }
+                }
+
+                #profile {
+                    grid-area: profile;
+
+                    #loginb {
+                        text-decoration: none;
+                        border-right: solid rgb(255, 123, 0);
+                        color: black;
+                        padding: 6px;
+                    }
+
+                    :hover {
+                        background-color: rgb(236, 236, 236);
+                    }
+
+                }
             }
 
             nav {
@@ -99,72 +200,6 @@ body {
 
                 li {
                     display: inline-block;
-
-                    .card {
-                        position: relative;
-                        background-color: rgb(255, 255, 255);
-                        margin: 5px;
-        
-                        width: 293px;
-                        height: 325px;
-        
-                        border-left: solid rgb(255, 123, 0);
-                        margin-bottom: 4px;
-        
-                        h3 {
-                            padding: 0 3px 0 3px;
-                            text-align: center;
-                            max-height: 22;
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                        }
-        
-                        img {
-                            width: 100%;
-                        }
-
-                        p {
-                            padding: 0 3px 0 3px;
-                            max-height: 56px;
-                            overflow: hidden;
-                            display: -webkit-box;
-                            -webkit-line-clamp: 3;
-                            -webkit-box-orient: vertical;  
-                        }
-
-                        .tools {
-                            position: absolute;
-                            bottom: 0;
-
-                            a {
-                                padding: 4px;
-                                color: black;
-
-                                .delete:hover {
-                                    color: red;
-                                }
-
-                                .create:hover {
-                                    color: green;
-                                }
-
-                                .save:hover {
-                                    color: blue;
-                                }
-
-                            }
-
-                        }
-    
-                    }
-
-                    .card:hover {
-                        transform: scale(1.05);
-                        z-index: 1000;
-                        box-shadow: 0px 0px 10px 4px gray;
-                    }
-
                 }
 
             }
@@ -415,6 +450,122 @@ body {
             }
         }
 
-    }
+        //login.pug || createAcc.pug
+        #login {
 
+            border-left: solid rgb(255, 123, 0);
+            margin: 35px;
+
+            form {
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+
+                input {
+                    margin: 1px;
+                    padding: 4px;
+                    height: 30px;
+                    width: 200px;
+                    font-size: 20px;
+                    background: none;
+                    border: none;
+                    border-bottom: solid 1px black;
+                    outline: none;
+                }
+
+                #button {
+                    display: flex;
+                    justify-content: center;
+                    input {
+                        width: 80px;
+                    }
+                }
+                
+                a {
+                    float: right;
+                    margin-top: 10px;
+                }
+
+            }
+
+        }
+
+        #profile {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            width: 100%;
+
+
+            #profileHeader {
+                width: 100%;
+
+                h1 {
+                    grid-area: name;
+                    text-align: center;
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+
+            }
+
+            #profileInfo {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+
+                #profileSide {
+                    flex: 1;
+                    border-right: solid rgb(255, 123, 0);
+                    padding-left: 20px;
+                    padding-top: 30px;
+
+                    h2 {
+                        margin-bottom: 10px;
+                        text-align: center;
+                    }
+
+                    ul {
+
+                        li {
+                            list-style-type: none;
+                            border-left: solid rgb(255, 123, 0);
+                            margin-bottom: 10px;
+                            padding-left: 5px;
+
+                            .infoName {
+
+                            }
+
+                            .info {
+                                color: gray;
+                                margin-left: 10px;
+                            }   
+                        }
+                    }
+                }
+
+                #profileMain {
+                    flex: 3;
+
+                    #foodCreated {
+                        padding: 30px;
+                        display: block;
+        
+                        ul {
+                            list-style-type: none;    
+                            display: inline-block;
+                            margin: auto;
+                            column-count: 2;
+        
+                            li {
+                                display: inline-block;
+                            }
+
+                        }
+                    }
+                } 
+            }
+        }
+    }
 }
