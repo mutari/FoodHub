@@ -3,6 +3,8 @@ const mongodb = require('mongodb').MongoClient;
 const conString = process.env.CONSTRING;
 const express = require('express');
 const coockieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
+const isLogedIn = require('./Routs/modules/auth').isLogedIn;
 
 const port = 80;
 
@@ -24,6 +26,8 @@ const port = 80;
     app.use(express.urlencoded({extended: false}));
     app.use(express.static(__dirname + '/public'));
     app.use(coockieParser());
+    app.use(isLogedIn);
+
     app.listen(port, (err) => {
         if(err) console.log(err)
         else console.log(`Server started and listening on port: ${port}`);

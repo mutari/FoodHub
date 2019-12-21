@@ -14,6 +14,36 @@
   height: 50px;
 }
 
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+
 .card {
   position: relative;
   background-color: white;
@@ -186,43 +216,48 @@ body main #addFood form input[name=name] {
 body main #addFood form #info {
   width: 90%;
   display: flex;
+  flex-direction: column;
 }
-body main #addFood form #info #itemDiv {
+body main #addFood form #info #main {
+  width: 100%;
+  display: flex;
+}
+body main #addFood form #info #main #itemDiv {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-body main #addFood form #info #itemDiv h3 {
+body main #addFood form #info #main #itemDiv h3 {
   color: gray;
   text-align: center;
 }
-body main #addFood form #info #itemDiv #items {
+body main #addFood form #info #main #itemDiv #items {
   flex: 1;
   border-right: solid 1px;
   margin-right: 10px;
   padding-right: 10px;
 }
-body main #addFood form #info #itemDiv #items .ing {
+body main #addFood form #info #main #itemDiv #items .ing {
   width: 100%;
   display: flex;
 }
-body main #addFood form #info #itemDiv #items .ing input {
+body main #addFood form #info #main #itemDiv #items .ing input {
   font-size: 15px;
 }
-body main #addFood form #info #itemDiv #items .ing input[type=text] {
+body main #addFood form #info #main #itemDiv #items .ing input[type=text] {
   flex: 4;
 }
-body main #addFood form #info #itemDiv #items .ing input[type=button] {
+body main #addFood form #info #main #itemDiv #items .ing input[type=button] {
   flex: 1;
 }
-body main #addFood form #info #howTo {
+body main #addFood form #info #main #howTo {
   flex: 3;
   display: flex;
   align-items: center;
   display: flex;
   flex-direction: column;
 }
-body main #addFood form #info #howTo textarea {
+body main #addFood form #info #main #howTo textarea {
   padding: 10px;
   border-top: solid 1px;
   font-size: 15px;
@@ -230,25 +265,48 @@ body main #addFood form #info #howTo textarea {
   height: 75px;
   resize: none;
 }
-body main #addFood form #info #howTo h3 {
+body main #addFood form #info #main #howTo h3 {
   color: gray;
   text-align: center;
 }
-body main #addFood form #info #howTo #HTitems {
+body main #addFood form #info #main #howTo #HTitems {
   width: 96%;
 }
-body main #addFood form #info #howTo #HTitems .ht {
+body main #addFood form #info #main #howTo #HTitems .ht {
   width: 100%;
   display: flex;
 }
-body main #addFood form #info #howTo #HTitems .ht input {
+body main #addFood form #info #main #howTo #HTitems .ht input {
   font-size: 15px;
 }
-body main #addFood form #info #howTo #HTitems .ht input[type=text] {
+body main #addFood form #info #main #howTo #HTitems .ht input[type=text] {
   flex: 4;
 }
-body main #addFood form #info #howTo #HTitems .ht input[type=button] {
+body main #addFood form #info #main #howTo #HTitems .ht input[type=button] {
   flex: 1;
+}
+body main #addFood form #info #tagar {
+  margin-top: 30px;
+  display: block;
+  border-top: solid 1px;
+}
+body main #addFood form #info #tagar h3 {
+  color: gray;
+  width: 100%;
+  text-align: center;
+}
+body main #addFood form #info #tagar #tags {
+  display: flex;
+  flex-direction: row;
+}
+body main #addFood form #info #tagar #tags input {
+  font-size: 10px;
+}
+body main #addFood form #info #tagar #tags #tag {
+  position: relative;
+}
+body main #addFood form #info #tagar #tags #tag input[type=text] {
+  width: 50px;
 }
 body main #FoodInfo {
   width: 100%;
@@ -276,36 +334,40 @@ body main #FoodInfo p {
 body main #FoodInfo #info {
   width: 90%;
   display: flex;
+  flex-direction: column;
 }
-body main #FoodInfo #info #itemDiv {
+body main #FoodInfo #info #main {
+  display: flex;
+}
+body main #FoodInfo #info #main #itemDiv {
   flex: 1;
   display: flex;
   flex-direction: column;
   border-right: solid 1px;
 }
-body main #FoodInfo #info #itemDiv img {
+body main #FoodInfo #info #main #itemDiv img {
   margin: 10px;
 }
-body main #FoodInfo #info #itemDiv .block {
+body main #FoodInfo #info #main #itemDiv .block {
   height: 20px;
 }
-body main #FoodInfo #info #itemDiv h3 {
+body main #FoodInfo #info #main #itemDiv h3 {
   color: gray;
   text-align: center;
 }
-body main #FoodInfo #info #itemDiv #items {
+body main #FoodInfo #info #main #itemDiv #items {
   flex: 1;
   margin-right: 10px;
   padding-right: 10px;
 }
-body main #FoodInfo #info #itemDiv #items .ing {
+body main #FoodInfo #info #main #itemDiv #items .ing {
   width: 100%;
   display: flex;
 }
-body main #FoodInfo #info #itemDiv #items .ing p {
+body main #FoodInfo #info #main #itemDiv #items .ing p {
   text-align: left;
 }
-body main #FoodInfo #info #howTo {
+body main #FoodInfo #info #main #howTo {
   flex: 3;
   display: flex;
   align-items: center;
@@ -313,7 +375,7 @@ body main #FoodInfo #info #howTo {
   flex-direction: column;
   padding-top: 25px;
 }
-body main #FoodInfo #info #howTo .textarea {
+body main #FoodInfo #info #main #howTo .textarea {
   border: none;
   outline: none;
   padding: 10px;
@@ -323,28 +385,52 @@ body main #FoodInfo #info #howTo .textarea {
   margin: 20px;
   font-size: 20px;
 }
-body main #FoodInfo #info #howTo .block {
+body main #FoodInfo #info #main #howTo .block {
   height: 100px;
 }
-body main #FoodInfo #info #howTo h3 {
+body main #FoodInfo #info #main #howTo h3 {
   color: gray;
   text-align: center;
 }
-body main #FoodInfo #info #howTo #HTitems {
+body main #FoodInfo #info #main #howTo #HTitems {
   width: 96%;
 }
-body main #FoodInfo #info #howTo #HTitems .ht {
+body main #FoodInfo #info #main #howTo #HTitems .ht {
   width: 100%;
   display: flex;
 }
-body main #FoodInfo #info #howTo #HTitems .ht .instr {
+body main #FoodInfo #info #main #howTo #HTitems .ht .instr {
   text-align: left;
   padding-left: 10px;
 }
-body main #FoodInfo #info #howTo #HTitems .ht .index {
+body main #FoodInfo #info #main #howTo #HTitems .ht .index {
   width: 30px;
   color: #ff7b00;
   border: none;
+}
+body main #FoodInfo #info #tagar {
+  margin-top: 30px;
+  display: block;
+  border-top: solid 1px;
+}
+body main #FoodInfo #info #tagar h3 {
+  color: gray;
+  width: 100%;
+  text-align: center;
+}
+body main #FoodInfo #info #tagar #tags {
+  display: flex;
+  flex-direction: row;
+}
+body main #FoodInfo #info #tagar #tags #tag {
+  display: flex;
+  flex-direction: row;
+}
+body main #FoodInfo #info #tagar #tags #tag p {
+  font-size: 10px;
+  width: 50px;
+  border: none;
+  border-bottom: solid 1px #ff7b00;
 }
 body main #login {
   border-left: solid #ff7b00;
@@ -372,6 +458,13 @@ body main #login form #button {
 }
 body main #login form #button input {
   width: 80px;
+}
+body main #login form #buttonCreate {
+  display: flex;
+  justify-content: center;
+}
+body main #login form #buttonCreate input {
+  width: 120px;
 }
 body main #login form a {
   float: right;
@@ -407,6 +500,9 @@ body main #profile #profileInfo #profileSide h2 {
   margin-bottom: 10px;
   text-align: center;
 }
+body main #profile #profileInfo #profileSide h2 a {
+  color: black;
+}
 body main #profile #profileInfo #profileSide ul li {
   list-style-type: none;
   border-left: solid #ff7b00;
@@ -420,17 +516,22 @@ body main #profile #profileInfo #profileSide ul li .info {
 body main #profile #profileInfo #profileMain {
   flex: 3;
 }
-body main #profile #profileInfo #profileMain #foodCreated {
+body main #profile #profileInfo #profileMain #foodCreated, body main #profile #profileInfo #profileMain #foodSaved {
   padding: 30px;
   display: block;
 }
-body main #profile #profileInfo #profileMain #foodCreated ul {
+body main #profile #profileInfo #profileMain #foodCreated h4, body main #profile #profileInfo #profileMain #foodSaved h4 {
+  text-align: center;
+  margin-right: 80px;
+  padding-bottom: 20px;
+}
+body main #profile #profileInfo #profileMain #foodCreated ul, body main #profile #profileInfo #profileMain #foodSaved ul {
   list-style-type: none;
   display: inline-block;
   margin: auto;
   column-count: 2;
 }
-body main #profile #profileInfo #profileMain #foodCreated ul li {
+body main #profile #profileInfo #profileMain #foodCreated ul li, body main #profile #profileInfo #profileMain #foodSaved ul li {
   display: inline-block;
 }
 

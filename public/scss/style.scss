@@ -13,6 +13,35 @@
     height: 50px;
 }
 
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #e9e9e9;
+}
+.autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+
 //food cards
 .card {
     position: relative;
@@ -207,7 +236,7 @@ body {
         }
 
 
-        //addFood.pug
+        //addFood.pug || rewriteFood.pug
         #addFood {
             width: 100%;
 
@@ -236,86 +265,131 @@ body {
                 #info {
                     width: 90%;
                     display: flex;
+                    flex-direction: column;
 
-                    #itemDiv {
-                        flex: 1;
+                    #main {
+
+                        width: 100%;
                         display: flex;
-                        flex-direction: column;
 
-                        h3 {
-                            color: gray;
-                            text-align: center;
-                        }
+                        #itemDiv {
 
-                        #items {
                             flex: 1;
-                            border-right: solid 1px;
-                            margin-right: 10px;
-                            padding-right: 10px;
+                            display: flex;
+                            flex-direction: column;
     
-                            .ing {
-                                width: 100%;
-                                display: flex;
+                            h3 {
+                                color: gray;
+                                text-align: center;
+                            }
     
-                                input {
-    
-                                    font-size: 15px;
+                            #items {
+                                flex: 1;
+                                border-right: solid 1px;
+                                margin-right: 10px;
+                                padding-right: 10px;
+        
+                                .ing {
+                                    width: 100%;
+                                    display: flex;
+        
+                                    input {
+        
+                                        font-size: 15px;
+                                    }
+        
+                                    input[type="text"] {
+                                        flex: 4;
+                                    }
+        
+                                    input[type="button"] {
+                                        flex: 1;
+                                    }
+        
                                 }
+                            }
     
-                                input[type="text"] {
-                                    flex: 4;
-                                }
+                        }
     
-                                input[type="button"] {
-                                    flex: 1;
+                        #howTo {
+
+                            flex: 3;
+                            display: flex;
+                            align-items: center;
+                            display: flex;
+                            flex-direction: column;
+    
+    
+                            textarea {
+                                padding: 10px;
+                                border-top: solid 1px;
+                                font-size: 15px;
+                                width: 95%;
+                                height: 75px;
+                                resize: none;
+                            }
+    
+                            h3 {
+                                color: gray;
+                                text-align: center;
+                            }
+    
+                            #HTitems {
+    
+                                width: 96%;
+    
+                                .ht {
+                                    width: 100%;
+                                    display: flex;
+        
+                                    input {
+                                        font-size: 15px;
+                                    }
+        
+                                    input[type="text"] {
+                                        flex: 4;
+                                    }
+        
+                                    input[type="button"] {
+                                        flex: 1;
+                                    }
                                 }
     
                             }
+    
                         }
 
                     }
 
-                    #howTo {
-                        flex: 3;
-                        display: flex;
-                        align-items: center;
-                        display: flex;
-                        flex-direction: column;
-
-
-                        textarea {
-                            padding: 10px;
-                            border-top: solid 1px;
-                            font-size: 15px;
-                            width: 95%;
-                            height: 75px;
-                            resize: none;
-                        }
+                    #tagar {
+                        
+                        margin-top: 30px;
+                        display: block;
+                        border-top: solid 1px;
 
                         h3 {
                             color: gray;
+                            width: 100%;
                             text-align: center;
                         }
 
-                        #HTitems {
+                        #tags {
+                            display: flex;
+                            flex-direction: row;
 
-                            width: 96%;
+                            input {
+                                font-size: 10px;
+                            }
 
-                            .ht {
-                                width: 100%;
-                                display: flex;
-    
-                                input {
-                                    font-size: 15px;
-                                }
-    
+                            #tag {
+
+                                position: relative;
+
                                 input[type="text"] {
-                                    flex: 4;
+                                    width: 50px;
+
                                 }
-    
-                                input[type="button"] {
-                                    flex: 1;
-                                }
+
                             }
 
                         }
@@ -357,89 +431,127 @@ body {
             #info {
                 width: 90%;
                 display: flex;
+                flex-direction: column;
 
-                #itemDiv {
-                    flex: 1;
+                #main {
                     display: flex;
-                    flex-direction: column;
-                    border-right: solid 1px;
 
-                    img {
-                        margin: 10px;
-                    }
 
-                    .block {
-                        height: 20px
+                    #itemDiv {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        border-right: solid 1px;
+    
+                        img {
+                            margin: 10px;
+                        }
+    
+                        .block {
+                            height: 20px
+                        }
+    
+                        h3 {
+                            color: gray;
+                            text-align: center;
+                        }
+    
+                        #items {
+                            flex: 1;
+                            margin-right: 10px;
+                            padding-right: 10px;
+    
+                            .ing {
+                                width: 100%;
+                                display: flex;
+    
+                                p {
+                                    text-align: left;
+                                }
+    
+                            }
+                        }
+    
                     }
+    
+                    #howTo {
+                        flex: 3;
+                        display: flex;
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                        padding-top: 25px;
+    
+                        .textarea {
+                            border: none;
+                            outline: none;
+                            padding: 10px;
+                            border-top: solid 1px rgb(255, 123, 0);
+                            border-bottom: solid 1px rgb(255, 123, 0);
+                            width: 95%;
+                            margin: 20px;
+                            font-size: 20px;
+                        }
+    
+                        .block {
+                            height: 100px;
+                        }
+    
+                        h3 {
+                            color: gray;
+                            text-align: center;
+                        }
+    
+                        #HTitems {
+    
+                            width: 96%;
+    
+                            .ht {
+                                width: 100%;
+                                display: flex;
+    
+                                .instr {
+                                    text-align: left;
+                                    padding-left: 10px;
+                                }
+    
+                                .index {
+                                    width: 30px;
+                                    color:  rgb(255, 123, 0);
+                                    border: none;
+                                }
+                            }
+    
+                        }
+    
+                    }
+                }   
+
+                #tagar {
+                        
+                    margin-top: 30px;
+                    display: block;
+                    border-top: solid 1px;
 
                     h3 {
                         color: gray;
+                        width: 100%;
                         text-align: center;
                     }
 
-                    #items {
-                        flex: 1;
-                        margin-right: 10px;
-                        padding-right: 10px;
+                    #tags {
+                        display: flex;
+                        flex-direction: row;
 
-                        .ing {
-                            width: 100%;
+                        #tag {
                             display: flex;
+                            flex-direction: row;
 
                             p {
-                                text-align: left;
-                            }
-
-                        }
-                    }
-
-                }
-
-                #howTo {
-                    flex: 3;
-                    display: flex;
-                    align-items: center;
-                    display: flex;
-                    flex-direction: column;
-                    padding-top: 25px;
-
-                    .textarea {
-                        border: none;
-                        outline: none;
-                        padding: 10px;
-                        border-top: solid 1px rgb(255, 123, 0);
-                        border-bottom: solid 1px rgb(255, 123, 0);
-                        width: 95%;
-                        margin: 20px;
-                        font-size: 20px;
-                    }
-
-                    .block {
-                        height: 100px;
-                    }
-
-                    h3 {
-                        color: gray;
-                        text-align: center;
-                    }
-
-                    #HTitems {
-
-                        width: 96%;
-
-                        .ht {
-                            width: 100%;
-                            display: flex;
-
-                            .instr {
-                                text-align: left;
-                                padding-left: 10px;
-                            }
-
-                            .index {
-                                width: 30px;
-                                color:  rgb(255, 123, 0);
+                                font-size: 10px;
+                                width: 50px;
                                 border: none;
+                                border-bottom: solid 1px rgb(255, 123, 0);
                             }
                         }
 
@@ -478,6 +590,14 @@ body {
                     justify-content: center;
                     input {
                         width: 80px;
+                    }
+                }
+
+                #buttonCreate {
+                    display: flex;
+                    justify-content: center;
+                    input {
+                        width: 120px;
                     }
                 }
                 
@@ -523,6 +643,11 @@ body {
                     h2 {
                         margin-bottom: 10px;
                         text-align: center;
+
+                        a {
+                            color: black;
+                        }
+
                     }
 
                     ul {
@@ -548,9 +673,15 @@ body {
                 #profileMain {
                     flex: 3;
 
-                    #foodCreated {
+                    #foodCreated, #foodSaved {
                         padding: 30px;
                         display: block;
+
+                        h4 {
+                            text-align: center;
+                            margin-right: 80px;
+                            padding-bottom: 20px;
+                        }
         
                         ul {
                             list-style-type: none;    
