@@ -116,8 +116,12 @@ module.exports = (app) => {
             await app.dbUser.updateOne({"email": req.token.email}, {$set: user});
             res.redirect('/');
         }
-        else 
-            console.log("du har redan sparat dena maträtten");
+        else {
+            user.save = user.save.filter(e => e != req.params.id)
+            await app.dbUser.updateOne({"email": req.token.email}, {$set: user});
+            res.redirect('/');
+        }
+
 
     });
 

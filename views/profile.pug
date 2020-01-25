@@ -53,6 +53,8 @@ body
                                         h3=item.name
                                         p=item.discription
                                         .tools
+                                            a(href=`/save/${item._id}`)
+                                                i(class="tiny material-icons save", class="saved") save
                                         .user
                                             a(href=`/profile/${(item.user ? item.user.id : '0')}`)='by: ' + (item.user ? item.user.username : 'admin') 
         

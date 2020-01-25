@@ -3,14 +3,13 @@ const mongodb = require('mongodb').MongoClient;
 const conString = process.env.CONSTRING;
 const express = require('express');
 const coockieParser = require("cookie-parser");
-const jwt = require("jsonwebtoken");
 const isLogedIn = require('./Routs/modules/auth').isLogedIn;
 
 const port = 80;
 
 (async () => {
 
-    //start and connerct to mongodb
+    //start and connect to mongodb
     const con = await mongodb.connect(conString, {useNewUrlParser: true, useUnifiedTopology: true});
     //create a new db in mongodb atlas
     const db = await con.db("menu")
@@ -27,6 +26,11 @@ const port = 80;
     app.use(express.static(__dirname + '/public'));
     app.use(coockieParser());
     app.use(isLogedIn);
+    app.use((req, res, next) => {
+        req.dbFood = foodCol;
+        req.dbUser = userCol;
+        next();
+    })
 
     app.listen(port, (err) => {
         if(err) console.log(err)
